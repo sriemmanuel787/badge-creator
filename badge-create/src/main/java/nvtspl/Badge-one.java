@@ -1,3 +1,5 @@
+package nvtspl;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -5,10 +7,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Arrays;
 
-class Main1 {
+class Main {
     public static void main(String[] args) throws IOException {
-        // barcode expanded by factor of 2.3794
-        // QR code expanded by factor of 2.6785714285714285714285714285714
         File base = new File("base.svg");
         Scanner open = new Scanner(base);
         String[] template = new String[439];
@@ -18,13 +18,13 @@ class Main1 {
         open.close();
         System.out.println("template loaded");
 
-        /* File registrations = new File("IYC_24_Main_Registration_Responses_-_Region_3.csv");
+        File registrations = new File("IYC_24_Main_Registration_Responses_-_Region_3.csv");
         Scanner responses = new Scanner(registrations);
         responses.nextLine(); // i gotta advance this past the header
         ArrayList<String[]> resStore = new ArrayList<String[]>();
         while (responses.hasNext()) {
             resStore.add(Arrays.copyOfRange(responses.nextLine().split(","), 0, 11));
-        } */
+        }
 
         File[] tickets = new File("sample").listFiles();
         for (int i = 0; i < tickets.length; i++) {
@@ -37,6 +37,8 @@ class Main1 {
             String firstName = "";
             String lastName = "";
             String region = "";
+            String size = "";
+            String age = "";
             String confirm = "";
             String barcode = "";
             String qrcode = "";
@@ -45,24 +47,14 @@ class Main1 {
                 confirm = ticketText.get(46).strip().split(">")[1];
                 barcode = ticketText.get(40).strip().split("\"")[5];
                 qrcode = "xlink:href=\"" + ticketText.get(7).strip().split("\"")[7] + "\" /><style";
-                String[] name = ticketText.get(90).split(">")[1].split(" ");
-                firstName = name[0];
-                for (int j = 1; j < name.length; j++)
-                    lastName += name[j] + " ";
-                lastName = lastName.trim();
             } catch (ArrayIndexOutOfBoundsException e) {
                 confirm = ticketText.get(45).strip().split(">")[1];
                 barcode = ticketText.get(40).strip().split("\"")[5];
                 qrcode = "xlink:href=\"" + ticketText.get(7).strip().split("\"")[7] + "\" /><style";
-                String[] name = ticketText.get(89).split(">")[1].split(" ");
-                firstName = name[0];
-                for (int j = 1; j < name.length; j++)
-                    lastName += name[j] + " ";
-                lastName = lastName.trim();
             }
 
             // Determine the age group, region, shirt size and name of the badge holder
-            /* try {
+            try {
                 for (int j = 0; j < resStore.size(); j++) {
                     if (resStore.get(j)[2].strip().equals(confirm)) {
                         age = resStore.get(j)[10].strip();
@@ -75,11 +67,12 @@ class Main1 {
 
             } catch (Exception e) {
                 continue;
-            } */
+            }
 
             badge[423] = qrcode;
             badge[422] = "<image transform=\"translate(874, 28)\"";
             badge[420] = "id=\"tspan2652\">" + region + "</tspan></text>";
+            badge[412] = "style=\"stroke-width:0\">" + size + "</tspan></text><text";
             badge[261] = "style=\"stroke-width:0\">" + firstName + "</tspan></text><g";
             badge[250] = "style=\"font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold';stroke-width:0\">"
                     + lastName + "</tspan></text><text";
@@ -87,7 +80,7 @@ class Main1 {
             badge[220] = "style=\"stroke-width:0\">" + confirm
                     + "</tspan></text><path transform=\"scale(2.3794) translate(-126,333)\"";
 
-            File save = new File("onsite/badge" + (i + 1) + ".svg");
+            File save = new File("completed/" + age + "/badge" + (i + 1) + ".svg");
             FileWriter write = new FileWriter(save);
             // Age groups: 7-11, 12-18, 19-24, 25-34, 35-44, 45+
             for (int k = 0; k < badge.length; k++) {

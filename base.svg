@@ -218,11 +218,55 @@
      id="tspan1667"
      x="607.6571"
      y="1756.4143"
-     style="stroke-width:0">XX-XXXX-XXXX-XXX</tspan></text><path
-   id="barcode-slot"
-   class="s3"
-   d="M 69.07204,1517.7338 H 1134.1655 v 161.1655 H 69.07204 Z"
-   style="fill:#000000;stroke-width:1.00103" /><path
+     style="stroke-width:0">XX-XXXX-XXXX-XXX</tspan></text>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <path
    id="attendee-color"
    class="s4"
    d="M 0.00112997,1247.4563 H 1201.2344 v 150.1542 H 0.00112997 Z"
