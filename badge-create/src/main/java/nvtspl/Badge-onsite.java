@@ -40,6 +40,7 @@ class Main1 {
             while (tix.hasNext()) {
                 ticketText.add(tix.nextLine());
             }
+            tix.close();
             String[] badge = template.clone();
             String firstName = "";
             String lastName = "";
