@@ -64,7 +64,7 @@ class Main1 {
             tickets[i].delete();
             barcode[0] = "<g transform=\"translate (-58.3, 16.7) scale(3.565217391304348)\">";
             barcode[46] = "</g>";
-
+            
             badge[467] = qrcode;
             badge[464] = "id=\"tspan2652\">" + region + "</tspan></text>";
             badge[305] = "style=\"stroke-width:0\">" + firstName + "</tspan></text><g";
