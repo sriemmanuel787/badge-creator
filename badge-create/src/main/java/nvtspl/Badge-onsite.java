@@ -27,7 +27,7 @@ class Main1 {
         for (int i = 0; i < tickets.length; i++) {
             PdfDocument temp = new PdfDocument();
             temp.loadFromFile(tickets[i].getAbsolutePath());
-            temp.saveToFile("/workspaces/badge-creator/sample/svg-temp" + (i + 1) + ".svg", FileFormat.SVG);
+            temp.saveToFile("sample/svg-temp" + (i + 1) + ".svg", FileFormat.SVG);
             temp.close();
             tickets[i].delete();
         }
@@ -62,7 +62,7 @@ class Main1 {
                 System.out.println("error!" + i);
             }
             tickets[i].delete();
-            barcode[0] = "<g transform=\"translate (-58.3, 16.7) scale(3.565217391304348)\">";
+            barcode[0] = "<g transform=\"scale(4.768534177) translate(-63.1, 165.9)\">";
             barcode[46] = "</g>";
             
             badge[467] = qrcode;

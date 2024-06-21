@@ -13,7 +13,7 @@ class Main {
     public static void main(String[] args) throws IOException {
         File base = new File("base.svg");
         Scanner open = new Scanner(base);
-        String[] template = new String[439];
+        String[] template = new String[483];
         for (int i = 0; i < template.length; i++) {
             template[i] = open.nextLine();
         }
@@ -32,7 +32,7 @@ class Main {
         for (int i = 0; i < tickets.length; i++) {
             PdfDocument temp = new PdfDocument();
             temp.loadFromFile(tickets[i].getAbsolutePath());
-            temp.saveToFile("/workspaces/badge-creator/sample/svg-temp" + (i + 1) + ".svg", FileFormat.SVG);
+            temp.saveToFile("sample/svg-temp" + (i + 1) + ".svg", FileFormat.SVG);
             temp.close();
             tickets[i].delete();
         }
@@ -53,6 +53,7 @@ class Main {
             String confirm = "";
             String[] barcode = new String[47];
             String qrcode = "";
+            boolean ymtp = false;
             try {
                 confirm = ticketText.get(77).split(">")[1].split("<")[0];
                 for (int j = 0; j < barcode.length; j++)
@@ -71,18 +72,19 @@ class Main {
                         lastName = resStore.get(j)[4].strip();
                         region = resStore.get(j)[0].strip().substring(0, 2);
                         size = resStore.get(j)[8].strip();
+                        ymtp = resStore.get(j)[34].strip().equals("Youth Minister - YMTP");
                     }
                 }
             } catch (Exception e) {
                 continue;
             }
             tickets[i].delete();
-            barcode[0] = "<g transform=\"translate (-58.3, 16.7) scale(3.565217391304348)\">";
+            barcode[0] = "<g transform=\"scale(4.768534177) translate(-63.1, 165.9)\">";
             barcode[46] = "</g>";
 
             badge[467] = qrcode;
             badge[464] = "id=\"tspan2652\">" + region + "</tspan></text>";
-            badge[412] = "style=\"stroke-width:0\">" + size + "</tspan></text><text";
+            badge[456] = "style=\"stroke-width:0\">" + size + "</tspan></text><text";
             badge[305] = "style=\"stroke-width:0\">" + firstName + "</tspan></text><g";
             badge[294] = "style=\"font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold';stroke-width:0\">"
                     + lastName + "</tspan></text><text";
@@ -91,6 +93,11 @@ class Main {
             }
             badge[220] = "style=\"stroke-width:0\">" + confirm
                     + "</tspan></text>";
+
+            System.out.println(ymtp);
+            if (ymtp) {
+                badge[283] = "style=\"stroke-width:0;fill:#ffffff\">Youth Minister - YMTP</tspan></text><text";
+            }
 
             File save = new File("completed/" + age + "/badge" + (i + 1) + ".svg");
             FileWriter write = new FileWriter(save);
