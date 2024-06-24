@@ -23,6 +23,11 @@ class Main1 {
         open.close();
         System.out.println("template loaded");
 
+        PdfDocument dummy = new PdfDocument();
+        dummy.loadFromFile("/workspaces/badge-creator/000-dummy.pdf");
+        dummy.saveToFile("test.svg", FileFormat.SVG);
+        dummy.close();
+        
         File[] tickets = new File("sample").listFiles();
         for (int i = 0; i < tickets.length; i++) {
             PdfDocument temp = new PdfDocument();
