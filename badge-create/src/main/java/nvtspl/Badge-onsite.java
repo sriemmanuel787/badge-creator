@@ -53,6 +53,7 @@ class Main1 {
             String confirm = "";
             String[] barcode = new String[47];
             String qrcode = "";
+
             try {
                 confirm = ticketText.get(77).split(">")[1].split("<")[0];
                 for (int j = 0; j < barcode.length; j++)
@@ -72,6 +73,7 @@ class Main1 {
             
             badge[467] = qrcode;
             badge[464] = "id=\"tspan2652\">" + region + "</tspan></text>";
+            badge[456] = "style=\"stroke-width:0\"></tspan></text><text";
             badge[305] = "style=\"stroke-width:0\">" + firstName + "</tspan></text><g";
             badge[294] = "style=\"font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold';stroke-width:0\">"
                     + lastName + "</tspan></text><text";
