@@ -64,6 +64,7 @@ class Main1 {
                 for (int j = 1; j < name.length; j++)
                     lastName += name[j] + " ";
                 lastName = lastName.trim();
+                region = ticketText.get(29).split(">")[1].split("<")[0].split(" ")[2];
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("error!" + i);
             }
