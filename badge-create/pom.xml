@@ -31,6 +31,11 @@
 			<artifactId>spire.pdf.free</artifactId>
 			<version>9.12.3</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlgraphics</groupId>
+			<artifactId>batik-all</artifactId>
+			<version>1.17</version>
+		</dependency>
 	</dependencies>
 
 	<repositories>
